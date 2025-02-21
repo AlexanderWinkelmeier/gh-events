@@ -3,14 +3,23 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - main
+      - dev-* # dev-new dev-next
+      - feat/** # feat/new feat/next/button
   workflow_dispatch:
   push:
     branches:
       - main
+      - dev-* # dev-new dev-next
+      - feat/** # feat/new feat/next/button
+    paths-ignore:
+      - ".github/workflows/*"
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    
       - name: Output event data
         run: echo "${{ toJSON(github.event) }}"
       - name: Get code
@@ -23,3 +32,4 @@ jobs:
         run: npm run build
       - name: Deploy project
         run: echo "Deploying..."
+        

@@ -26,6 +26,7 @@ function HelpArea() {
         <HelpBox key={item.id} title={item.title} text={item.text} />
       ))}
     </section>
+
   );
 }
 
